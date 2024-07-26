@@ -4,12 +4,16 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'mapbus',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    path: 'mapbus',
+    loadChildren: () => import('./mapbus/mapbus.module').then( m => m.MapbusPageModule)
+  },
+  {
+    path: 'documentacao',
+    loadChildren: () => import('./documentacao/documentacao.module').then( m => m.DocumentacaoPageModule)
   }
 ];
 
