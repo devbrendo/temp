@@ -16,8 +16,11 @@ export class AppComponent {
     this.navCtrl.navigateForward('/mapbus');
     this.olho.ObterToken();
   }
-  documentacao() {
+  async documentacao() {
     this.navCtrl.navigateForward('/documentacao');
-    
+    console.log('fez buscar')
+    const olho = await this.olho.busca();
+
+    console.log('olho',olho)
   }
 }

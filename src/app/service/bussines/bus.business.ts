@@ -11,4 +11,8 @@ export class busBusiness {
     async ObterToken(){
         return await this.busApi.token();
     }
+
+    async busca():Promise<any>{
+        return await this.busApi.busca();
+    }
 }

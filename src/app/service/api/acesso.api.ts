@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { catchError, map, Observable, of } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +11,7 @@ export class AcessoOlho {
 
     public endpoints = {
         tokenAcesso: () => `${this.API_OLHO}/Login/Autenticar?token=${this.TOKEN}`,
+        busca: () => `${this.API_OLHO}/Linha/Buscar?termosBusca=8000`
     }
 
     constructor(private readonly http: HttpClient) {}
@@ -23,5 +25,15 @@ export class AcessoOlho {
             console.error('Erro na requisição', error);
             return false;
         }
+    }
+
+    busca(): Observable<any> {
+        const endpoint = this.endpoints.busca();
+        return this.http.get(endpoint).pipe(
+            catchError(error => {
+                console.error('Erro na requisição', error);
+                return of(null); // Retorna null ou um valor padrão em caso de erro
+            })
+        );
     }
 }
