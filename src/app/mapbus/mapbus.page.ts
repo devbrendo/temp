@@ -8,7 +8,9 @@ import { busBusiness } from '../service/bussines/bus.business';
   styleUrls: ['./mapbus.page.scss'],
 })
 export class MapbusPage implements OnInit {
-
+  linha= '';
+  sentido= '';
+  
   constructor(
     private navCtrl: NavController,
     private olho: busBusiness
@@ -30,7 +32,7 @@ export class MapbusPage implements OnInit {
   }
 
   async pesquisaParametro(){
-    const pesquisa = this.olho.buscaComSentido('Ramos', 1);
+    const pesquisa = this.olho.buscaComSentido(this.linha, this.sentido);
     console.log(pesquisa);
   }
 

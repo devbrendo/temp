@@ -22,7 +22,7 @@ export class busBusiness {
         }
       }
     
-    async buscaComSentido(codigoLinha: string, sentido: number): Promise<any>{
+    async buscaComSentido(codigoLinha: string, sentido: string): Promise<any>{
         try{
             const data = await this.busApi.buscaLinhaSentido(codigoLinha, sentido);
             return data;

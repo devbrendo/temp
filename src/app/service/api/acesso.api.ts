@@ -11,9 +11,10 @@ export class AcessoOlho {
     public endpoints = {
         tokenAcesso: () => `${this.API_OLHO}/Login/Autenticar?token=aiko`,
         busca: (termo: string) => `${this.API_OLHO}/Linha/Buscar?termosBusca=${termo}`,
-        buscaDeLinhaSentido: (codigoLinha: string, sentido: number) => `
+        buscaDeLinhaSentido: (codigoLinha: string, sentido: string) => `
         ${this.API_OLHO}/Linha/BuscarLinhaSentido?termosBusca=${codigoLinha}&sentido=${sentido}
         `,
+        BuscarParadasPorCorredor: (codigoCorredor: string) => `${this.API_OLHO}/Parada/BuscarParadasPorCorredor?codigoCorredor=${codigoCorredor}`
     }
 
     constructor(private readonly http: HttpClient) {}
@@ -34,8 +35,14 @@ export class AcessoOlho {
         return this.http.get<any>(endpoint).toPromise();
       }
 
-    async buscaLinhaSentido(codigoLinha: string, sentido: number): Promise<any> {
+    async buscaLinhaSentido(codigoLinha: string, sentido: string): Promise<any> {
         const endpoint = this.endpoints.buscaDeLinhaSentido(codigoLinha, sentido);
         return this.http.get<any>(endpoint).toPromise();
     }
+
+    async BuscarParadasPorCorredor(codigoCorredor: string): Promise<any>{
+        const endpoint = this.endpoints.BuscarParadasPorCorredor(codigoCorredor);
+        return this.http.get<any>(endpoint).toPromise();
+    }
+
 }
