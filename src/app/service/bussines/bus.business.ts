@@ -12,7 +12,23 @@ export class busBusiness {
         return await this.busApi.token();
     }
 
-    async busca():Promise<any>{
-        return await this.busApi.busca();
+    async busca(): Promise<any> {
+        try {
+          const data = await this.busApi.busca();
+          return data;
+        } catch (error) {
+          console.error('Erro na camada Business:', error);
+          throw error; // rethrow the error if needed
+        }
+      }
+    
+    async buscaComSentido(codigoLinha: string, sentido: number): Promise<any>{
+        try{
+            const data = await this.busApi.buscaLinhaSentido(codigoLinha, sentido);
+            return data;
+        }catch(error){
+            console.error('Erro na camada Business:', error);
+            throw error; // rethrow the error if needed
+        }
     }
 }

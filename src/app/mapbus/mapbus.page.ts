@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { busBusiness } from '../service/bussines/bus.business';
 
 @Component({
   selector: 'app-mapbus',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapbusPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private navCtrl: NavController,
+    private olho: busBusiness
+  ) { }
 
   ngOnInit() {
+  }
+
+  async request() {
+    try {
+      this.olho.ObterToken();
+      console.log('Token obtido');
+  
+      const olho = await this.olho.busca();
+      console.log('olho', olho);
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+    }
+  }
+
+  async pesquisaParametro(){
+    const pesquisa = this.olho.buscaComSentido('Ramos', 1);
+    console.log(pesquisa);
   }
 
 }

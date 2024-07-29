@@ -17,9 +17,10 @@ export class AppComponent {
     this.olho.ObterToken();
   }
   async documentacao() {
-    this.navCtrl.navigateForward('/documentacao');
-    console.log('fez buscar')
     const olho = await this.olho.busca();
+    //this.navCtrl.navigateForward('/documentacao');
+    console.log('fez buscar')
+    
 
     console.log('olho',olho)
   }
